@@ -1,5 +1,6 @@
-import { Title } from "@mantine/core";
+import { Container, Title } from "@mantine/core";
 
-export const Home = () => (
-    <Title>Home</Title>
-)
+export const Home = () => {return(
+
+    <Title>Espruino Tools - Demonstrations</Title>
+)}
