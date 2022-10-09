@@ -1,8 +1,9 @@
-import { Box, Center, Code, SegmentedControl, Stack, Title } from "@mantine/core"
+import { Box, Center, Code, SegmentedControl, Stack, Title,Text, Card } from "@mantine/core"
 import { useEffect, useState } from "react";
 import {BsCodeSlash,BsFillCameraVideoFill} from 'react-icons/bs'
-import {ImGithub} from 'react-icons/im'
 import { FaReadme } from 'react-icons/fa'
+import ReactMarkdown from 'react-markdown'
+
 
 interface DemoProps{
     title: string;
@@ -36,16 +37,18 @@ const DemoReadme = ({name}:{name:string}) => {
         console.log('');
         fetch(`https://raw.githubusercontent.com/espruino-tools/demos/main/demos/${name}/README.md`)
             .then(async (data:any) => {
-                 return await data.text()
+                let res = await data.text()
+                console.log(res)
+                 return res
             }).then((res:string) => {
                 setReadme(res)
             })
     },[])
-    return <>{readme}</>
+    return <Text><ReactMarkdown>{readme}</ReactMarkdown></Text>
 }
 
 const DemoVideo = ({name}:{name:string}) => {
-    return <><video src={`https://raw.githubusercontent.com/espruino-tools/demos/main/demos/${name}/demo.mp4`}></video></>
+    return <Center><video controls src={`https://raw.githubusercontent.com/espruino-tools/demos/main/demos/${name}/demo.mp4`}></video></Center>
 }
 
 
@@ -54,7 +57,7 @@ export const DemoContainer = ({title,children}:DemoProps) => {
     return (
         
             <Stack>
-            <Title>{title}</Title>
+            <Title>{title.toLocaleUpperCase()}</Title>
             {children}
             <Center>
             <SegmentedControl onChange={(e)=>setPageVal(e)} data={[
@@ -87,11 +90,11 @@ export const DemoContainer = ({title,children}:DemoProps) => {
                 }
             ]}/>
                         </Center>
-
-            {pageVal == "Readme" && <DemoReadme name={title}/>}
-            {pageVal == "Demo" && <DemoVideo name={title}/>}
-            {pageVal == "Code" && <DemoCode name={title}/>}
-
+            <Card shadow="sm" p="lg" radius="md" withBorder>
+                {pageVal == "Readme" && <DemoReadme name={title}/>}
+                {pageVal == "Demo" && <DemoVideo name={title}/>}
+                {pageVal == "Code" && <DemoCode name={title}/>}
+            </Card>
             </Stack>
 
     )

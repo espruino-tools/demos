@@ -1,4 +1,4 @@
-import { DemoContainer } from "../components/DemoContainer"
+import { DemoContainer } from "../../components/DemoContainer"
 import { Code, Text } from '@mantine/core'
 
 
