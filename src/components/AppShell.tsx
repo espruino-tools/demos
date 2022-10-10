@@ -17,15 +17,12 @@ export const AppShell = ({children}:AppShellProps) => {
 
     return (
         <>
-        <Header height={60} p="xs">
-            <Group>
-                <Title order={2}>Espruino Tools - Demos</Title> 
+            <Header style={{backgroundColor:"white",display:'flex',alignItems:'center', gap: 30}} height={75} p="xs">
+                <Title pl="sm" order={2}>Espruino Demos</Title> 
                 <Breadcrumbs>{items}</Breadcrumbs>  
-                </Group>
             </Header>
-        <Container pt="xl">
+
             {children}
-        </Container>
         </>
     )
 }

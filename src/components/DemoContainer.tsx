@@ -1,4 +1,4 @@
-import { Box, Center, Code, SegmentedControl, Stack, Title,Text, Card } from "@mantine/core"
+import { Box, Center, Code, SegmentedControl, Stack, Title,Text, Card, Container, Tabs } from "@mantine/core"
 import { useEffect, useState } from "react";
 import {BsCodeSlash,BsFillCameraVideoFill} from 'react-icons/bs'
 import { FaReadme } from 'react-icons/fa'
@@ -48,54 +48,51 @@ const DemoReadme = ({name}:{name:string}) => {
 }
 
 const DemoVideo = ({name}:{name:string}) => {
-    return <Center><video controls src={`https://raw.githubusercontent.com/espruino-tools/demos/main/demos/${name}/demo.mp4`}></video></Center>
+    return (
+        <>
+
+            <Center>
+                <video style={{borderRadius:20}} controls src={`https://raw.githubusercontent.com/espruino-tools/demos/main/demos/${name}/demo.mp4`}></video>
+            </Center>
+        </>
+    )
 }
 
 
 export const DemoContainer = ({title,children}:DemoProps) => {
     const [pageVal,setPageVal] = useState<string>('Readme')
     return (
-        
-            <Stack>
-            <Title>{title.toLocaleUpperCase()}</Title>
-            {children}
-            <Center>
-            <SegmentedControl onChange={(e)=>setPageVal(e)} data={[
-                {
-                    value:"Readme",
-                    label: (
-                        <Center>
-                            <FaReadme/>
-                            <Box ml={10}>Introduction</Box>
-                        </Center>
-                    )
-                    },
-                {
-                value:"Demo",
-                label: (
-                    <Center>
-                        <BsFillCameraVideoFill/>
-                        <Box ml={10}>Demo</Box>
-                    </Center>
-                )
-                },
-                {
-                value:"Code",
-                label: (
-                    <Center>
-                        <BsCodeSlash/>
-                        <Box ml={10}>Code</Box>
-                    </Center>
-                )
-                }
-            ]}/>
-                        </Center>
-            <Card shadow="sm" p="lg" radius="md" withBorder>
-                {pageVal == "Readme" && <DemoReadme name={title}/>}
-                {pageVal == "Demo" && <DemoVideo name={title}/>}
-                {pageVal == "Code" && <DemoCode name={title}/>}
-            </Card>
-            </Stack>
+            <>
+            <div style={{background:"#F2F2F2"}}>
+                <Container p="xl" pb={43}>
+            <Title pt="xl">{title.toLocaleUpperCase()}</Title>
+                {children}
+            </Container>
+            </div>
+            
+            <Tabs variant="outline" defaultValue="readme">
+      <Tabs.List style={{width:"100%",background:"#F2F2F2"}}>
+        <div style={{width:"100%",background:"#F2F2F2", display:"flex",justifyContent:"left", maxWidth:"980px",marginLeft:"auto",marginRight:"auto"}}>
+            <Tabs.Tab style={{marginLeft:"10px"}} value="readme">Readme</Tabs.Tab>
+            <Tabs.Tab value="video">Video</Tabs.Tab>
+            <Tabs.Tab value="code">Code</Tabs.Tab>
+        </div>
+      </Tabs.List>
+        <Container pt="xl">
+      <Tabs.Panel value="readme" pt="xs">
+      <DemoReadme name={title}/>
+      </Tabs.Panel>
+
+      <Tabs.Panel value="video" pt="xs">
+      <DemoVideo name={title}/>
+      </Tabs.Panel>
+
+      <Tabs.Panel value="code" pt="xs">
+      <DemoCode name={title}/>
+      </Tabs.Panel>
+      </Container>
+    </Tabs>
+            </>
 
     )
 }

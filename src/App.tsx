@@ -5,8 +5,9 @@ import { AppShell } from './components/AppShell';
 import { DemoList } from './pages/DemoList';
 import { TestDemo } from './pages/demos/testDemo';
 import { Home } from './pages/Home';
-
+import './style/app.css'
 function App() {
+
   return (
     <BrowserRouter>
     <AppShell>
