@@ -11,11 +11,19 @@ export const AppShell = ({children,items}:AppShellProps) => {
     return (
         <>
         <div style={{minHeight:"calc(100vh - 50px)"}}>
+            
             <Header style={{backgroundColor:"white",display:'flex',alignItems:'center', gap: 30}} height={75} p="xs">
                 <Title pl="sm" order={2}>Espruino Demos</Title> 
-                <Breadcrumbs>{items}</Breadcrumbs>  
+                {window.location.origin + '/' != window.location.href &&
+                <div className="breadcrumb-container">
+                    <Breadcrumbs>{items}</Breadcrumbs>  
+                </div>}
             </Header>
-
+            {window.location.origin + '/' != window.location.href &&
+            <Container pt="lg" className="breadcrumb-mobile">
+                <Breadcrumbs>{items}</Breadcrumbs>
+            </Container>
+}
             {children}
             </div>
             <Footer height={50} style={{background:'#2b3137'}}>
