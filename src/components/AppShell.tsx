@@ -1,4 +1,4 @@
-import { Anchor, Breadcrumbs, Container, Divider } from "@mantine/core";
+import { Anchor, Breadcrumbs, Container, Divider, Group, Header, Title } from "@mantine/core";
 
 interface AppShellProps{
     children: React.ReactNode;
@@ -16,12 +16,16 @@ export const AppShell = ({children}:AppShellProps) => {
       
 
     return (
+        <>
+        <Header height={60} p="xs">
+            <Group>
+                <Title order={2}>Espruino Tools - Demos</Title> 
+                <Breadcrumbs>{items}</Breadcrumbs>  
+                </Group>
+            </Header>
         <Container pt="xl">
-            <Breadcrumbs>{items}</Breadcrumbs>
-            <br/>
-            <Divider variant="dashed"></Divider>
-            <br/>
             {children}
         </Container>
+        </>
     )
 }
