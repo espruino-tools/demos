@@ -3,18 +3,10 @@ import { FaCopyright, FaRegCopyright } from "react-icons/fa";
 
 interface AppShellProps{
     children: React.ReactNode;
+    items:any;
 }
 
-export const AppShell = ({children}:AppShellProps) => {
-
-    const items = [
-        { title: 'home', href: '/' },
-      ].map((item, index) => (
-        <Anchor href={item.href} key={index}>
-          {item.title}
-        </Anchor>
-      ));
-      
+export const AppShell = ({children,items}:AppShellProps) => {      
 
     return (
         <>

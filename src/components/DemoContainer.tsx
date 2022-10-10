@@ -73,9 +73,9 @@ export const DemoContainer = ({title,children}:DemoProps) => {
             <Tabs variant="outline" defaultValue="readme">
       <Tabs.List style={{width:"100%",background:"#F2F2F2"}}>
         <div style={{width:"100%",background:"#F2F2F2", display:"flex",justifyContent:"left", maxWidth:"980px",marginLeft:"auto",marginRight:"auto"}}>
-            <Tabs.Tab style={{marginLeft:"10px"}} value="readme">Readme</Tabs.Tab>
-            <Tabs.Tab value="video">Video</Tabs.Tab>
-            <Tabs.Tab value="code">Code</Tabs.Tab>
+            <Tabs.Tab icon={<FaReadme/>} style={{marginLeft:"10px"}} value="readme">Readme</Tabs.Tab>
+            <Tabs.Tab icon={<BsFillCameraVideoFill/>} value="video">Video</Tabs.Tab>
+            <Tabs.Tab icon={<BsCodeSlash/>} value="code">Code</Tabs.Tab>
         </div>
       </Tabs.List>
         <Container pt="xl">
@@ -88,7 +88,7 @@ export const DemoContainer = ({title,children}:DemoProps) => {
       </Tabs.Panel>
 
       <Tabs.Panel value="code" pt="xs">
-      <DemoCode name={title}/>
+      <DemoCode  name={title}/>
       </Tabs.Panel>
       </Container>
     </Tabs>

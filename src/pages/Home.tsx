@@ -15,11 +15,11 @@ export const Home = () => {return(
         <Group style={{justifyContent:"space-around"}}>
         <Card style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center", width:300, height:400}}>
         <Image height={150} fit="contain" src="https://svgshare.com/i/nJc.svg"></Image>
-        <Text pt="xl" style={{textAlign:"center"}}>Here is some sample text to describe the ease of using this.</Text>
+        <Text pt="xl" style={{textAlign:"center"}}>This site intends to show just how easy it is to use the device controller package to create meaningful projects.</Text>
         </Card>
         <Card style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center", width:300, height:400}}>
         <Image height={150} fit="contain" src="https://svgshare.com/i/nHx.svg"></Image>
-        <Text pt="xl" style={{textAlign:"center"}}>Here is some sample text to describe the ease of using this.</Text>
+        <Text pt="xl" style={{textAlign:"center"}}>View video Demonstrations and the code required to produce the demonstrations.</Text>
 
         </Card>
         </Group>
