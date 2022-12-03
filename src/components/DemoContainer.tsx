@@ -7,7 +7,6 @@ import ReactMarkdown from 'react-markdown'
 
 interface DemoProps{
     title: string;
-    children: React.ReactNode;
 }
 
 const DemoCode = ({name}:{name:string}) => {
@@ -15,7 +14,6 @@ const DemoCode = ({name}:{name:string}) => {
 
     useEffect(()=>{
         console.log('');
-        // https://raw.githubusercontent.com/espruino-tools/demos/main/demos/template/index.ts
         fetch(`https://raw.githubusercontent.com/espruino-tools/demos/main/demos/${name}/index.ts`)
             .then(async (data:any) => {
                  return await data.text()
@@ -30,12 +28,24 @@ const DemoCode = ({name}:{name:string}) => {
     )
 }
 
-const DemoReadme = ({name}:{name:string}) => {
+const DemoVideo = ({name,textContent}:{name:string,textContent:string}) => {
+    return (
+        <>
+
+                <video style={{borderRadius:20}} controls src={`https://raw.githubusercontent.com/espruino-tools/demos/main/demos/${name}/demo.mp4`}></video>
+                <Text><ReactMarkdown>{textContent}</ReactMarkdown></Text>
+        </>
+    )
+}
+
+
+export const DemoContainer = ({title}:DemoProps) => {
+    const [pageVal,setPageVal] = useState<string>('video')
     let [readme,setReadme] = useState<string>("")
 
     useEffect(()=>{
         console.log('');
-        fetch(`https://raw.githubusercontent.com/espruino-tools/demos/main/demos/${name}/README.md`)
+        fetch(`https://raw.githubusercontent.com/espruino-tools/demos/main/demos/${title}/README.md`)
             .then(async (data:any) => {
                 let res = await data.text()
                 console.log(res)
@@ -44,29 +54,15 @@ const DemoReadme = ({name}:{name:string}) => {
                 setReadme(res)
             })
     },[])
-    return <Text><ReactMarkdown>{readme}</ReactMarkdown></Text>
-}
-
-const DemoVideo = ({name}:{name:string}) => {
-    return (
-        <>
-
-            <Center>
-                <video style={{borderRadius:20}} controls src={`https://raw.githubusercontent.com/espruino-tools/demos/main/demos/${name}/demo.mp4`}></video>
-            </Center>
-        </>
-    )
-}
-
-
-export const DemoContainer = ({title,children}:DemoProps) => {
-    const [pageVal,setPageVal] = useState<string>('Readme')
     return (
             <>
             <div style={{background:"#F2F2F2"}}>
                 <Container p="xl" pb={43}>
-            <Title pt="xl">{title.toLocaleUpperCase()}</Title>
-                {children}
+                    <Text>
+                <ReactMarkdown>
+                {readme.split("<!-- README DIVIDER -->")[0]}
+                </ReactMarkdown>
+                </Text>
             </Container>
             </div>
             
@@ -79,12 +75,9 @@ export const DemoContainer = ({title,children}:DemoProps) => {
         </div>
       </Tabs.List>
         <Container pt="xl">
-      <Tabs.Panel value="readme" pt="xs">
-      <DemoReadme name={title}/>
-      </Tabs.Panel>
 
       <Tabs.Panel value="video" pt="xs">
-      <DemoVideo name={title}/>
+      <DemoVideo name={title} textContent={readme.split("<!-- README DIVIDER -->")![1]}/>
       </Tabs.Panel>
 
       <Tabs.Panel value="code" pt="xs">

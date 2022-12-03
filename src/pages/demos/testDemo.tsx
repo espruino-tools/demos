@@ -16,8 +16,6 @@ export const TestDemo = ({breadCrumb}:any) => {
     },[])
 
     return (
-        <DemoContainer title={"template"}>
-            <Text>This is a demo page with an example of some features</Text>
-        </DemoContainer>
+        <DemoContainer title={"demo"}/>
     )
 }
