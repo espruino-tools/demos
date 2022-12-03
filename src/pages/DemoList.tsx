@@ -22,7 +22,8 @@ export const DemoList = ({breadCrumb}:any) => {
             </Container>
         </div>
             <Container>
-                <DemoListItem name="Template" description="here is a test description" link="demo/template"/>
+            <DemoListItem name="Template" description="here is a test description" link="demo/template"/>
+            <DemoListItem name="React-Test" description="here is a test description" link="demo/test2"/>
                 <DemoListItem name="404 example" description="this is an example of a bad link" link="demo/test"/>
 
             </Container>
