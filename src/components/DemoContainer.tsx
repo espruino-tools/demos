@@ -39,11 +39,11 @@ const DemoCode = ({name}:{name:string}) => {
        }).then((res:string) => {
            setCode(res);
        })
-       setFileExtension(chosenFile.path.toString().split('.')[1] )
+       setFileExtension(chosenFile.path.toString().split('.')[chosenFile.path.toString().split('.').length - 1] )
     }
     },[chosenFile])
 
-    const getFileExtension = (obj:any) => obj.path.split(`demos/${name}/`)[1].toString().split('.')[1]
+    const getFileExtension = (obj:any) => obj.path.split(`demos/${name}/`)[1].toString().split('.')[obj.path.split(`demos/${name}/`)[1].toString().split('.').length - 1]
 
     const getFileIcon = (ext:string) => FileIcons[ext as extension]
 
