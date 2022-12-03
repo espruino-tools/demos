@@ -5,6 +5,7 @@
   "dependencies": {
     "@espruino-tools/device-controller": "^1.0.2-b",
     "@mantine/core": "^5.5.4",
+    "@mantine/prism": "^5.9.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/node": "^16.11.64",

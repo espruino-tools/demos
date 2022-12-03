@@ -8,6 +8,7 @@ import { TestDemo } from './pages/demos/testDemo';
 import { Home } from './pages/Home';
 import { Error } from './pages/error'
 import './style/app.css'
+import { Test2 } from './pages/demos/test2';
 function App() {
 
   const [breadcrumbsItems, setBreadcrumbsItems] = useState<{title:string,href:string}[]>([{ title: 'home', href: '/' }])
@@ -37,6 +38,7 @@ function App() {
       <Route path="/" element={<Home/>}/>
       <Route path="demo" element={<DemoList breadCrumb={[breadcrumbsItems, setBreadcrumbsItems]}/>}/>
       <Route path="demo/template" element={<TestDemo breadCrumb={[breadcrumbsItems, setBreadcrumbsItems]}/>}/>
+      <Route path="demo/test2" element={<Test2 breadCrumb={[breadcrumbsItems, setBreadcrumbsItems]}/>}/>
       </Routes>
       </AppShell>
     </BrowserRouter>

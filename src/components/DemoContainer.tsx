@@ -4,6 +4,7 @@ import {BsCodeSlash,BsFillCameraVideoFill} from 'react-icons/bs'
 import { FaReadme } from 'react-icons/fa'
 import ReactMarkdown from 'react-markdown'
 import '../style/demoContainer.css'
+import { Prism } from '@mantine/prism';
 
 interface DemoProps{
     title: string;
@@ -11,20 +12,48 @@ interface DemoProps{
 
 const DemoCode = ({name}:{name:string}) => {
     let [code,setCode] = useState<string>("")
+    let [files,setFiles] = useState<any>([])
+    let [chosenFile,setChosenFile] = useState<any>(undefined)
+    let [fileExtension, setFileExtension] = useState<any>("js")
 
     useEffect(()=>{
         console.log('');
-        fetch(`https://raw.githubusercontent.com/espruino-tools/demos/main/demos/${name}/index.ts`)
+        fetch(`https://api.github.com/repos/espruino-tools/demos/git/trees/production?recursive=1`)
             .then(async (data:any) => {
-                 return await data.text()
-            }).then((res:string) => {
-                setCode(res)
+                 return await data.json()
+            }).then((res:any) => {
+                let filtered_res = res.tree.filter((x:any) => x.path.startsWith(`demos/${name}/`) && !(x.path.endsWith('README.md') || (x.path.endsWith('demo.mp4'))))
+                console.log(filtered_res)
+                setFiles(filtered_res)
+                setChosenFile(filtered_res[0])
             })
     },[])
+
+    useEffect(()=>{
+        if(chosenFile !== undefined){
+        fetch(`https://raw.githubusercontent.com/espruino-tools/demos/main/${chosenFile.path}`)
+        .then(async (data:any) => {
+            return await data.text()
+       }).then((res:string) => {
+           setCode(res);
+       })
+       setFileExtension(chosenFile.path.toString().split('.')[1] )
+    }
+    },[chosenFile])
+
+
     return (
-        <Code block>
-            {code}
-        </Code>
+       <>
+       <div style={{display:'flex'}}>
+            <div style={{paddingRight:25}}>
+                {files.map((x:any) => <p onClick={()=>setChosenFile(x)}>{x.path.split(`demos/${name}/`)[1]}</p>)}
+            </div>
+            <div style={{width:"100%"}}>
+                <Prism scrollAreaComponent="div" style={{width:"100%"}} withLineNumbers language={fileExtension}>
+                {code}
+                </Prism>
+            </div>
+        </div></>
     )
 }
 
