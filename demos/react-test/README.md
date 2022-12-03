@@ -1,15 +1,31 @@
-## Test Content
+# Welcome to create-espruino-app
 
-This is a page which include some text, this should be used as a project description
+Have fun with your espruino tools vanilla javascript app.
 
-<!-- README DIVIDER -->
+The docs are located [here](here)
 
-### Text Content
+## 😀 Lets get started
 
-This is the video description or further information about the project this can include any markdown required.
+- Get started by running `cd my-app-name`
 
-- here is some test content
+- Followed by `npm start`
 
-```
-here is some more
-```
+This will start a local development environment.
+
+## 💻 Hosting
+
+Hosting with create-espruino-app is easy,
+
+lets get started
+
+- run `npm run build`.
+
+This will create a new folder `build`
+
+You should see 3 files in here
+
+- `bundled.js`
+- `bundled.css`
+- `index.html`
+
+the contents of this folder are new bundled and ready to be hosted online.
