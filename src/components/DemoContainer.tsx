@@ -1,10 +1,12 @@
 import { Box, Center, Code, SegmentedControl, Stack, Title,Text, Card, Container, Tabs, Divider } from "@mantine/core"
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import {BsCodeSlash,BsFillCameraVideoFill} from 'react-icons/bs'
 import { FaReadme } from 'react-icons/fa'
 import ReactMarkdown from 'react-markdown'
 import '../style/demoContainer.css'
 import { Prism } from '@mantine/prism';
+import { extension, FileIcons } from "../assets/fileTypeIcons";
+import { JsxElement } from "typescript";
 
 interface DemoProps{
     title: string;
@@ -41,12 +43,19 @@ const DemoCode = ({name}:{name:string}) => {
     }
     },[chosenFile])
 
+    const getFileExtension = (obj:any) => obj.path.split(`demos/${name}/`)[1].toString().split('.')[1]
+
+    const getFileIcon = (ext:string) => FileIcons[ext as extension]
 
     return (
        <>
        <div style={{display:'flex'}}>
             <div style={{paddingRight:25}}>
-                {files.map((x:any) => <p onClick={()=>setChosenFile(x)}>{x.path.split(`demos/${name}/`)[1]}</p>)}
+                <Tabs orientation='vertical' defaultValue={files[0]?.path}>
+                <Tabs.List>
+                {files.map((x:any) => <Tabs.Tab icon={getFileIcon(getFileExtension(x))} value={x.path} onClick={()=>setChosenFile(x)}>{x.path.split(`demos/${name}/`)[1]}</Tabs.Tab>)}
+                </Tabs.List>
+                </Tabs>
             </div>
             <div style={{width:"100%"}}>
                 <Prism scrollAreaComponent="div" style={{width:"100%"}} withLineNumbers language={fileExtension}>
