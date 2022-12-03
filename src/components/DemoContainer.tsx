@@ -1,9 +1,9 @@
-import { Box, Center, Code, SegmentedControl, Stack, Title,Text, Card, Container, Tabs } from "@mantine/core"
+import { Box, Center, Code, SegmentedControl, Stack, Title,Text, Card, Container, Tabs, Divider } from "@mantine/core"
 import { useEffect, useState } from "react";
 import {BsCodeSlash,BsFillCameraVideoFill} from 'react-icons/bs'
 import { FaReadme } from 'react-icons/fa'
 import ReactMarkdown from 'react-markdown'
-
+import '../style/demoContainer.css'
 
 interface DemoProps{
     title: string;
@@ -29,11 +29,24 @@ const DemoCode = ({name}:{name:string}) => {
 }
 
 const DemoVideo = ({name,textContent}:{name:string,textContent:string}) => {
+
+    const [expandedDescription, setExpandedDescription] = useState(false);
+
     return (
         <>
-
-                <video style={{borderRadius:20}} controls src={`https://raw.githubusercontent.com/espruino-tools/demos/main/demos/${name}/demo.mp4`}></video>
-                <Text><ReactMarkdown>{textContent}</ReactMarkdown></Text>
+                <div className="video-container">
+                    <div style={{padding:25,position:'relative'}}>
+                        <video style={{}} controls src={`https://raw.githubusercontent.com/espruino-tools/demos/main/demos/${name}/demo.mp4`}></video>
+                        <Text className={`${expandedDescription ? "video-description open" : "video-description"}`}><ReactMarkdown>{textContent}</ReactMarkdown></Text>
+                        <button className="expand-description" onClick={()=>setExpandedDescription(!expandedDescription)}><Divider labelPosition="center" label={expandedDescription ? "see less" : "see more"}/></button>
+                    </div>
+                    <div className="video-links-container">
+                        <div className="video-links">
+                            Github
+                        </div>
+                    </div>
+                </div>
+                
         </>
     )
 }
@@ -66,11 +79,11 @@ export const DemoContainer = ({title}:DemoProps) => {
             </Container>
             </div>
             
-            <Tabs variant="outline" defaultValue="readme">
+            <Tabs variant="outline" defaultValue="video">
       <Tabs.List style={{width:"100%",background:"#F2F2F2"}}>
         <div style={{width:"100%",background:"#F2F2F2", display:"flex",justifyContent:"left", maxWidth:"980px",marginLeft:"auto",marginRight:"auto"}}>
-            <Tabs.Tab icon={<FaReadme/>} style={{marginLeft:"10px"}} value="readme">Readme</Tabs.Tab>
-            <Tabs.Tab icon={<BsFillCameraVideoFill/>} value="video">Video</Tabs.Tab>
+
+            <Tabs.Tab icon={<BsFillCameraVideoFill/>} style={{marginLeft:"10px"}} value="video">Video</Tabs.Tab>
             <Tabs.Tab icon={<BsCodeSlash/>} value="code">Code</Tabs.Tab>
         </div>
       </Tabs.List>
