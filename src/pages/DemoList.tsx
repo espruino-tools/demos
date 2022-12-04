@@ -1,16 +1,28 @@
-import { Anchor, Title, Text, Container } from "@mantine/core";
+import { Title, Text, Container } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { DemoListItem } from "../components/DemoListItem";
 
-export const DemoList = ({breadCrumb}:any) => {
+export const DemoList = ({setBreadcrumbsItems}:{setBreadcrumbsItems:Function}) => {
 
-    let [breadcrumbsItems,setBreadcrumbsItems] = breadCrumb
+    const [folders,setFolders] = useState([])
 
     useEffect(()=>{
         setBreadcrumbsItems([
             { title: 'home', href: '/' },
             { title: 'demo', href: '/demo' }
         ])
+    },[setBreadcrumbsItems])
+
+    useEffect(()=>{
+        fetch(`https://api.github.com/repos/espruino-tools/demos/git/trees/production?recursive=1`)
+            .then(async (data:any) => {
+                 return await data.json()
+            }).then((res:any) => {
+                let filtered_res = res.tree.filter((x:any) => x.path.startsWith(`demos/`) && !(x.path.endsWith('README.md') || (x.path.endsWith('demo.mp4')))).map((x:any) => x.path.split('/')[1])
+                let uniqueFolders = new Set(filtered_res) 
+
+                setFolders(Array.from(uniqueFolders as any))
+            })
     },[])
 
     return (
@@ -22,10 +34,7 @@ export const DemoList = ({breadCrumb}:any) => {
             </Container>
         </div>
             <Container>
-            <DemoListItem name="Template" description="here is a test description" link="demo/template"/>
-            <DemoListItem name="React-Test" description="here is a test description" link="demo/test2"/>
-                <DemoListItem name="404 example" description="this is an example of a bad link" link="demo/test"/>
-
+                {folders.map((page:any) => <DemoListItem key={page} name={page} link={`demo/${page}`}/>)}
             </Container>
         </>
     )

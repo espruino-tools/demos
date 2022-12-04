@@ -16,5 +16,5 @@ export const FileIcons = {
 
 
 
-export type extension = 'html' | 'js' | 'ts' | 'jsx' | 'tsx' | 'css' | 'sass' | 'scss' | 'json'
+export type extension = 'html' | 'js' | 'ts' | 'jsx' | 'tsx' | 'css' | 'sass' | 'scss' | 'json' 
 

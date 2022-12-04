@@ -1,5 +1,5 @@
-import { Anchor, Breadcrumbs, Center, Container, Divider, Footer, Text, Header, Title } from "@mantine/core";
-import { FaCopyright, FaRegCopyright } from "react-icons/fa";
+import { Breadcrumbs, Center, Container, Footer, Text, Header, Title } from "@mantine/core";
+import { FaRegCopyright } from "react-icons/fa";
 
 interface AppShellProps{
     children: React.ReactNode;
@@ -14,12 +14,12 @@ export const AppShell = ({children,items}:AppShellProps) => {
             
             <Header style={{backgroundColor:"white",display:'flex',alignItems:'center', gap: 30}} height={75} p="xs">
                 <Title pl="sm" order={2}>Espruino Demos</Title> 
-                {window.location.origin + '/' != window.location.href &&
+                {window.location.origin + '/' !== window.location.href &&
                 <div className="breadcrumb-container">
                     <Breadcrumbs>{items}</Breadcrumbs>  
                 </div>}
             </Header>
-            {window.location.origin + '/' != window.location.href &&
+            {window.location.origin + '/' !== window.location.href &&
             <Container pt="lg" className="breadcrumb-mobile">
                 <Breadcrumbs>{items}</Breadcrumbs>
             </Container>

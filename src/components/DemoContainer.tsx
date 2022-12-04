@@ -1,12 +1,11 @@
-import { Box, Center, Code, SegmentedControl, Stack, Title,Text, Card, Container, Tabs, Divider } from "@mantine/core"
-import { ReactNode, useEffect, useState } from "react";
+import { Text, Container, Tabs, Divider } from "@mantine/core"
+import {  useEffect, useState } from "react";
 import {BsCodeSlash,BsFillCameraVideoFill} from 'react-icons/bs'
-import { FaReadme } from 'react-icons/fa'
 import ReactMarkdown from 'react-markdown'
 import '../style/demoContainer.css'
 import { Prism } from '@mantine/prism';
 import { extension, FileIcons } from "../assets/fileTypeIcons";
-import { JsxElement } from "typescript";
+import { FaFolder } from "react-icons/fa";
 
 interface DemoProps{
     title: string;
@@ -19,17 +18,15 @@ const DemoCode = ({name}:{name:string}) => {
     let [fileExtension, setFileExtension] = useState<any>("js")
 
     useEffect(()=>{
-        console.log('');
         fetch(`https://api.github.com/repos/espruino-tools/demos/git/trees/production?recursive=1`)
             .then(async (data:any) => {
                  return await data.json()
             }).then((res:any) => {
                 let filtered_res = res.tree.filter((x:any) => x.path.startsWith(`demos/${name}/`) && !(x.path.endsWith('README.md') || (x.path.endsWith('demo.mp4'))))
-                console.log(filtered_res)
                 setFiles(filtered_res)
                 setChosenFile(filtered_res[0])
             })
-    },[])
+    },[name])
 
     useEffect(()=>{
         if(chosenFile !== undefined){
@@ -45,20 +42,22 @@ const DemoCode = ({name}:{name:string}) => {
 
     const getFileExtension = (obj:any) => obj.path.split(`demos/${name}/`)[1].toString().split('.')[obj.path.split(`demos/${name}/`)[1].toString().split('.').length - 1]
 
-    const getFileIcon = (ext:string) => FileIcons[ext as extension]
+    const getFileIcon = (ext:string) => {
+        return FileIcons[ext as extension] || <FaFolder/>
+    }
 
     return (
        <>
        <div style={{display:'flex'}}>
-            <div style={{paddingRight:25}}>
+            <div style={{paddingRight:25, marginBottom: 20}}>
                 <Tabs orientation='vertical' defaultValue={files[0]?.path}>
                 <Tabs.List>
-                {files.map((x:any) => <Tabs.Tab icon={getFileIcon(getFileExtension(x))} value={x.path} onClick={()=>setChosenFile(x)}>{x.path.split(`demos/${name}/`)[1]}</Tabs.Tab>)}
+                {files.map((x:any) => <Tabs.Tab key={x.path.toString()} icon={getFileIcon(getFileExtension(x))} disabled={x.path.split(`demos/${name}/`)[1].toString().split('.').length === 1} value={x.path} style={{marginLeft: x.path.split(`demos/${name}/`)[1].split('/').length * 10}} onClick={()=>setChosenFile(x)}>{x.path.split(`demos/${name}/`)[1].split('/')[x.path.split(`demos/${name}/`)[1].split('/').length - 1]}</Tabs.Tab>)}
                 </Tabs.List>
                 </Tabs>
             </div>
             <div style={{width:"100%"}}>
-                <Prism scrollAreaComponent="div" style={{width:"100%"}} withLineNumbers language={fileExtension}>
+                <Prism scrollAreaComponent="div" style={{width:"100%", marginBottom: 20}} withLineNumbers language={fileExtension}>
                 {code}
                 </Prism>
             </div>
@@ -75,8 +74,8 @@ const DemoVideo = ({name,textContent}:{name:string,textContent:string}) => {
                 <div className="video-container">
                     <div style={{padding:25,position:'relative'}}>
                         <video style={{}} controls src={`https://raw.githubusercontent.com/espruino-tools/demos/main/demos/${name}/demo.mp4`}></video>
-                        <Text className={`${expandedDescription ? "video-description open" : "video-description"}`}><ReactMarkdown>{textContent}</ReactMarkdown></Text>
-                        <button className="expand-description" onClick={()=>setExpandedDescription(!expandedDescription)}><Divider labelPosition="center" label={expandedDescription ? "see less" : "see more"}/></button>
+                        <Text className={`${expandedDescription ? "video-description open" : textContent?.length > 100 ? "video-description" : "video-description open"}`}><ReactMarkdown>{textContent}</ReactMarkdown></Text>
+                        {textContent?.length > 100 && <button className="expand-description" onClick={()=>setExpandedDescription(!expandedDescription)}><Divider labelPosition="center" label={expandedDescription ? "see less" : "see more"}/></button>}
                     </div>
                     <div className="video-links-container">
                         <div className="video-links">
@@ -91,27 +90,24 @@ const DemoVideo = ({name,textContent}:{name:string,textContent:string}) => {
 
 
 export const DemoContainer = ({title}:DemoProps) => {
-    const [pageVal,setPageVal] = useState<string>('video')
     let [readme,setReadme] = useState<string>("")
 
     useEffect(()=>{
-        console.log('');
         fetch(`https://raw.githubusercontent.com/espruino-tools/demos/main/demos/${title}/README.md`)
             .then(async (data:any) => {
                 let res = await data.text()
-                console.log(res)
                  return res
             }).then((res:string) => {
                 setReadme(res)
             })
-    },[])
+    },[title])
     return (
             <>
             <div style={{background:"#F2F2F2"}}>
                 <Container p="xl" pb={43}>
                     <Text>
                 <ReactMarkdown>
-                {readme.split("<!-- README DIVIDER -->")[0]}
+                {readme.split("<!-- README DIVIDER -->")[0].slice(0,128)}
                 </ReactMarkdown>
                 </Text>
             </Container>

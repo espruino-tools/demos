@@ -7,7 +7,10 @@ export const Home = () => {return(
             <Center style={{flexDirection:"column"}}>
                 <Title style={{fontSize:40}}>Espruino Tools</Title>
                 <Text pb="xl" style={{fontSize:25}}>Demonstrations</Text>
-                <Anchor href="demo"><Button color="teal">view demos</Button></Anchor>
+                <Group>
+                <Anchor href="demo"><Button color="teal">View demos</Button></Anchor>
+                <Anchor href="help"><Button color="pink">Submit a demo</Button></Anchor>
+                </Group>
             </Center>
         </Container>
     </div>
