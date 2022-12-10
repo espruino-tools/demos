@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>create espruino app - connector</title>
+  </head>
+  <body>
+    <script src="src/peer.js"></script>
+
+    <div class="piano-container">
+      <div>
+        <div
+          onclick="piano.pressKey(this)"
+          class="key key-white"
+          key-data="C"
+        ></div>
+        <div
+          onclick="piano.pressKey(this)"
+          class="key key-black"
+          key-data="C#"
+        ></div>
+      </div>
+      <div>
+        <div
+          onclick="piano.pressKey(this)"
+          class="key key-white"
+          key-data="D"
+        ></div>
+        <div
+          onclick="piano.pressKey(this)"
+          class="key key-black"
+          key-data="D#"
+        ></div>
+      </div>
+      <div
+        onclick="piano.pressKey(this)"
+        class="key key-white"
+        key-data="E"
+      ></div>
+      <div>
+        <div
+          onclick="piano.pressKey(this)"
+          class="key key-white"
+          key-data="F"
+        ></div>
+        <div
+          onclick="piano.pressKey(this)"
+          class="key key-black"
+          key-data="F#"
+        ></div>
+      </div>
+      <div>
+        <div
+          onclick="piano.pressKey(this)"
+          class="key key-white"
+          key-data="G"
+        ></div>
+        <div
+          onclick="piano.pressKey(this)"
+          class="key key-black"
+          key-data="G#"
+        ></div>
+      </div>
+      <div>
+        <div
+          onclick="piano.pressKey(this)"
+          class="key key-white"
+          key-data="A"
+        ></div>
+        <div
+          onclick="piano.pressKey(this)"
+          class="key key-black"
+          key-data="A#"
+        ></div>
+      </div>
+      <div
+        onclick="piano.pressKey(this)"
+        class="key key-white"
+        key-data="B"
+      ></div>
+    </div>
+  </body>
+</html>
