@@ -34,7 +34,7 @@ export const DemoList = ({setBreadcrumbsItems}:{setBreadcrumbsItems:Function}) =
             <Text>Here is a list of demos used to show off the espruino tools package.</Text>
             </Container>
         </div>
-            <Container>
+            <Container sx={{display:'flex', flexWrap:'wrap', justifyContent:'center'}}>
                 {folders.map((page:any) => <DemoListItem thumbnail={`https://raw.githubusercontent.com/espruino-tools/demos/production/demos/${page}/thumbnail.png`} key={page} name={page} link={`demo/${page}`}/>)}
             </Container>
         </>
