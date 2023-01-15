@@ -3,11 +3,11 @@
         "title":"Remote mobile piano",
         "projectDescription":"This demo introduces the `@espruino-tools/peer` package to provide the user with a bluetooth controlled piano using their mobile phone."
     },
-    "sidebarLinks":{
-        "github":"",
-        "otherLink":"",
-        "otherLink2":""
-    },
+    "sidebarLinks":[
+        {"name":"github","link":""},
+        {"name":"otherLink","link":""},
+        {"name":"otherLink2","link":""}
+    ],
     "video":{
         "link":"",
         "details":{

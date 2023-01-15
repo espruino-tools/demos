@@ -65,7 +65,7 @@ const DemoCode = ({name}:{name:string}) => {
     )
 }
 
-const DemoVideo = ({name,textContent,link}:{name:string,textContent:string,link:string}) => {
+const DemoVideo = ({name,textContent,link, linkObj}:{name:string,textContent:string,link:string,linkObj:{name:string,link:string}[]}) => {
 
     const [expandedDescription, setExpandedDescription] = useState(false);
 
@@ -74,13 +74,16 @@ const DemoVideo = ({name,textContent,link}:{name:string,textContent:string,link:
             <div className="video-container">
                 <div style={{padding:25,position:'relative'}}>
                     <video style={{}} controls src={link}></video>
+                    <h2 style={{margin:0, marginTop:20}}>{name}</h2>
                     <Text className={`${expandedDescription ? "video-description open" : textContent?.length > 100 ? "video-description" : "video-description open"}`}><ReactMarkdown>{textContent}</ReactMarkdown></Text>
                     {textContent?.length > 100 && <button className="expand-description" onClick={()=>setExpandedDescription(!expandedDescription)}><Divider labelPosition="center" label={expandedDescription ? "see less" : "see more"}/></button>}
                 </div>
                 <div className="video-links-container">
-                    <div className="video-links">
-                        Github
-                    </div>
+                    {linkObj.map((link) => 
+                        <a href={link.link}><div className="video-links">
+                            {link.name}
+                        </div></a>
+                    )}
                 </div>
             </div>    
         </>
@@ -94,7 +97,7 @@ interface EstoolsConfig{
         title:string,
         projectDescription:string
     },
-    sidebarLinks:any,
+    sidebarLinks:{name:string,link:string}[],
     video:{
         link:string,
         details:{
@@ -121,8 +124,9 @@ export const DemoContainer = ({title}:DemoProps) => {
             <div style={{background:"#F2F2F2"}}>
                 <Container p="xl" pb={43}>
                     <Text>
+                        <h1>{config.projectHeader?.title}</h1>
                         <ReactMarkdown>
-                            {config.projectHeader.projectDescription.slice(0,128)}
+                            {config.projectHeader?.projectDescription.slice(0,128)}
                         </ReactMarkdown>
                     </Text>
                 </Container>
@@ -137,10 +141,10 @@ export const DemoContainer = ({title}:DemoProps) => {
                 </Tabs.List>
                 <Container pt="xl">
                     <Tabs.Panel value="video" pt="xs">
-                        <DemoVideo name={config.video.details.title} textContent={config.video.details.description} link={config.video.link}/>
+                        <DemoVideo linkObj={config.sidebarLinks} name={config.video?.details.title} textContent={config.video?.details.description} link={config.video?.link}/>
                     </Tabs.Panel>
                     <Tabs.Panel value="code" pt="xs">
-                        <DemoCode  name={title}/>
+                        <DemoCode name={title}/>
                     </Tabs.Panel>
                 </Container>
             </Tabs>
