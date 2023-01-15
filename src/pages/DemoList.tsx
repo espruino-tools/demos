@@ -20,9 +20,10 @@ export const DemoList = ({setBreadcrumbsItems}:{setBreadcrumbsItems:Function}) =
             }).then((res:any) => {
                 let filtered_res = res.tree.filter((x:any) => x.path.startsWith(`demos/`) && !(x.path.endsWith('README.md') || (x.path.endsWith('demo.mp4')))).map((x:any) => x.path.split('/')[1])
                 let uniqueFolders = new Set(filtered_res) 
-
+                console.log(uniqueFolders)
                 setFolders(Array.from(uniqueFolders as any))
             })
+
     },[])
 
     return (
@@ -34,7 +35,7 @@ export const DemoList = ({setBreadcrumbsItems}:{setBreadcrumbsItems:Function}) =
             </Container>
         </div>
             <Container>
-                {folders.map((page:any) => <DemoListItem key={page} name={page} link={`demo/${page}`}/>)}
+                {folders.map((page:any) => <DemoListItem thumbnail={`https://raw.githubusercontent.com/espruino-tools/demos/production/demos/${page}/thumbnail.png`} key={page} name={page} link={`demo/${page}`}/>)}
             </Container>
         </>
     )
