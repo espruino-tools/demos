@@ -79,8 +79,8 @@ const DemoVideo = ({name,textContent,link, linkObj}:{name:string,textContent:str
                     {textContent?.length > 100 && <button className="expand-description" onClick={()=>setExpandedDescription(!expandedDescription)}><Divider labelPosition="center" label={expandedDescription ? "see less" : "see more"}/></button>}
                 </div>
                 <div className="video-links-container">
-                    {linkObj.map((link) => 
-                        <a href={link.link}><div className="video-links">
+                    {linkObj?.map((link) => 
+                        <a className="hdn" href={link.link}><div className="video-links">
                             {link.name}
                         </div></a>
                     )}
