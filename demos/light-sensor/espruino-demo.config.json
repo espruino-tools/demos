@@ -1,0 +1,16 @@
+{
+    "projectHeader":{
+        "title":"Puck Light sensor demo",
+        "projectDescription":"This demo introduces the `@espruino-tools/core` package with the espruino Puck. "
+    },
+    "sidebarLinks":[
+        {"name":"github","link":"https://github.com/espruino-tools/demos/tree/production/demos/light-sensor"}
+    ],
+    "video":{
+        "link":"https://www.youtube.com/embed/Eg8DLQuNCBc",
+        "details":{
+            "title":"Puck LED Light Sensor Demo",
+            "description":"This demo highlights the built in tech from the espruino devices."
+        }
+    }
+}
