@@ -9,7 +9,7 @@
         {"name":"otherLink2","link":""}
     ],
     "video":{
-        "link":"",
+        "link":"https://www.youtube.com/embed/z0YW8AEI8LM",
         "details":{
             "title":"Piano Demo",
             "description":"This video shows both the mobile and web view, showing the connection and messages being sent over."
