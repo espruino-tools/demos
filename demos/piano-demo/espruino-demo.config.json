@@ -4,9 +4,7 @@
         "projectDescription":"This demo introduces the `@espruino-tools/peer` package to provide the user with a bluetooth controlled piano using their mobile phone."
     },
     "sidebarLinks":[
-        {"name":"github","link":""},
-        {"name":"otherLink","link":""},
-        {"name":"otherLink2","link":""}
+        {"name":"github","link":""}
     ],
     "video":{
         "link":"https://www.youtube.com/embed/z0YW8AEI8LM",
