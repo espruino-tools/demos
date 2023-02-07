@@ -73,7 +73,7 @@ const DemoVideo = ({name,textContent,link, linkObj}:{name:string,textContent:str
         <>
             <div className="video-container">
                 <div style={{padding:25,position:'relative'}}>
-                    <video style={{}} controls src={link}></video>
+                <iframe width="560" height="315" src={link} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                     <h2 style={{margin:0, marginTop:20}}>{name}</h2>
                     <Text className={`${expandedDescription ? "video-description open" : textContent?.length > 100 ? "video-description" : "video-description open"}`}><ReactMarkdown>{textContent}</ReactMarkdown></Text>
                     {textContent?.length > 100 && <button className="expand-description" onClick={()=>setExpandedDescription(!expandedDescription)}><Divider labelPosition="center" label={expandedDescription ? "see less" : "see more"}/></button>}
