@@ -55,8 +55,8 @@ Here is an example below
             "description":"This demo highlights the built in tech from the espruino devices."
         }
     }
-}```
-
+}
+```
 
 ### As for the code 🧑🏼‍💻
 
