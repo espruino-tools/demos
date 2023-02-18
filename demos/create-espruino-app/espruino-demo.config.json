@@ -1,0 +1,16 @@
+{
+    "projectHeader":{
+        "title":"create-espruino-app",
+        "projectDescription":"This demo is a simple demonstration of how to create an espruino app using the create-espruino-app npx tool."
+    },
+    "sidebarLinks":[
+        {"name":"github","link":"https://github.com/espruino-tools/demos/tree/production/demos/create-espruino-app"}
+    ],
+    "video":{
+        "link":"https://www.youtube.com/embed/dfYnhyTbHAc",
+        "details":{
+            "title":"create-espruino-app",
+            "description":"This video walks the user through the command line input and what it produces including the ready to use localhost app."
+        }
+    }
+}
