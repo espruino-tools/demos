@@ -1,0 +1,16 @@
+{
+    "projectHeader":{
+        "title":"Pixl Dinosaur game demo",
+        "projectDescription":"This demo introduces the `@espruino-tools/core` package with the espruino Pixl, also including the `@espruino-tools/peer` package for remote device control "
+    },
+    "sidebarLinks":[
+        {"name":"github","link":"https://github.com/espruino-tools/demos/tree/production/demos/pixl-dinosaur-demo"}
+    ],
+    "video":{
+        "link":"https://www.youtube.com/embed/v_5bjQv6bpw",
+        "details":{
+            "title":"Pixl peer-to-peer dinosaur game",
+            "description":"A small demo to showcase using a mobile device to control an espruino device via a peer to peer connection."
+        }
+    }
+}
