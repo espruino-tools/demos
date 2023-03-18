@@ -1,0 +1,16 @@
+{
+    "projectHeader":{
+        "title":"create-espruino-app comparison with standard uart.js setup",
+        "projectDescription":"This demo is a simple demonstration of how much faster the cli tool is over a standard node.js espruino set up with React."
+    },
+    "sidebarLinks":[
+        {"name":"github","link":"https://github.com/espruino-tools/demos/tree/production/demos/cli-tool-comparison"}
+    ],
+    "video":{
+        "link":"https://www.youtube.com/embed/b83hlUIGG98",
+        "details":{
+            "title":"create-espruino-app comparison with standard uart.js setup",
+            "description":"A small clip to showcase how much faster the CLI tool is at creating a simple react app with a connection button."
+        }
+    }
+}
